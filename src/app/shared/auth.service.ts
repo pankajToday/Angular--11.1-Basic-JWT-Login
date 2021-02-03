@@ -5,13 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-// User interface
-export class User {
-    name: string;
-    email: string;
-    password: string;
-    password_confirmation: string;
-}
+
 
 
 export class AuthService {
@@ -37,4 +31,11 @@ export class AuthService {
         return true ;
     }
 
+}
+// User interface
+export class User {
+    name: string;
+    email: string;
+    password: string;
+    password_confirmation: string;
 }

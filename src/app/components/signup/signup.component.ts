@@ -3,7 +3,7 @@ import {Component, Injectable, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
-import { AuthService } from './../../shared/auth.service';
+import { AuthService } from '../../shared/auth.service';
 import { FormBuilder, FormGroup } from "@angular/forms";
 
 
@@ -16,7 +16,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 export class SignupComponent implements OnInit {
 
   constructor( public router: Router,
-               public fb: FormBuilder,) {
+               public fb: FormBuilder,private authService : AuthService) {
       this.registerForm = this.fb.group({
           name: [''],
           email: [''],
@@ -32,7 +32,7 @@ export class SignupComponent implements OnInit {
   }
 
     onSubmit() {
-        /*this.authService.register(this.registerForm.value).subscribe(
+        this.authService.register(this.registerForm.value).subscribe(
             result => {
                 console.log(result)
             },
@@ -43,7 +43,7 @@ export class SignupComponent implements OnInit {
                 this.registerForm.reset()
                 this.router.navigate(['login']);
             }
-        )*/
+        )
     }
 
 

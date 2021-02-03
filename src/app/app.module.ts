@@ -31,11 +31,13 @@ import { Error404Component } from './components/error-page/error404/error404.com
       ReactiveFormsModule, FormsModule,
       RouterModule,AppRoutingModule
   ],
-  providers: [ {
-      provide: AuthService,
+  providers: [{
+      provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-  }],
+  },
+      AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
