@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/auth.service';
-import { FormBuilder, FormGroup } from "@angular/forms";
+import {FormBuilder, FormGroup} from '@angular/forms';
 import { TokenService } from '../../shared/token.service';
 import { AuthStateService } from '../../shared/auth-state.service';
 
@@ -23,8 +23,8 @@ export class SigninComponent implements OnInit {
               private authState: AuthStateService,
               private authService : AuthService) {
       this.loginForm = this.fb.group({
-          email: [],
-          password: []
+          email: ['eve.holt@reqres.in'],
+          password: ['cityslicka']
       })
   }
 

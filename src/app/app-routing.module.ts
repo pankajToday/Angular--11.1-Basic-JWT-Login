@@ -14,8 +14,8 @@ import { Error404Component } from './components/error-page/error404/error404.com
 
 
 const routes: Routes = [
+   { path: 'error-404', component: Error404Component },
   { path: 'sign-in', component: SigninComponent },
-  { path: 'error-404', component: Error404Component },
   { path: 'sign-up', component: SignupComponent },
   { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'error-404', pathMatch: 'full' },
