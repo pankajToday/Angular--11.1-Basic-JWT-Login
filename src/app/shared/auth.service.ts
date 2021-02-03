@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { TokenService } from '../shared/token.service';
 
 const base_url ="https://reqres.in/";
 
@@ -10,7 +11,7 @@ const base_url ="https://reqres.in/";
 
 export class AuthService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, public token: TokenService) { }
 
     // User registration
     register(user: User): Observable<any> {
@@ -27,8 +28,8 @@ export class AuthService {
         return this.http.get(base_url+'/api/unknown/2');
     }
 
-    isLoggedIn(){
-        return true ;
+    isLoggedInXXX(){
+       return this.token.isLoggedIn()
     }
 
 }

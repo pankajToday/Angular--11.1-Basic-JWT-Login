@@ -13,17 +13,20 @@ import { Error404Component } from './components/error-page/error404/error404.com
 
 
 
-const routes: Routes = [
-   { path: 'error-404', component: Error404Component },
+const appRoutes: Routes = [
   { path: 'sign-in', component: SigninComponent },
   { path: 'sign-up', component: SignupComponent },
-  { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [AuthGuard] },
-  { path: '**', redirectTo: 'error-404', pathMatch: 'full' },
-   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
-];
+  { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard] },
 
+  { path: 'error-404', component: Error404Component },
+
+    { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
+    { path: '**', redirectTo: '/error-404' },
+
+];
+//  path: '' always take place first and then  path: '**'..
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

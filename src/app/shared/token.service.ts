@@ -13,23 +13,27 @@ export class TokenService {
     constructor() { }
 
     handleData(token){
-        localStorage.setItem('auth_token', token);
+        localStorage.setItem('auth_token_ag_11', token);
     }
 
     getToken(){
-        return localStorage.getItem('auth_token');
+        return localStorage.getItem('auth_token_ag_11');
     }
 
     // Verify the token
     isValidToken(){
         const token = this.getToken();
-
         if(token){
-            const payload = this.payload(token);
+            // code commented due to undefined encode string. may be work in JWT Token.
+           // const payload = this.payload(token);
+            const  payload = token;
             if(payload){
-                return Object.values(this.issuer).indexOf(payload.iss) > -1 ? true : false;
+                return true;
+                // remove if JWT or any valid token comes.
+               // return Object.values(this.issuer).indexOf(payload.iss) > -1 ? true : false;
             }
         } else {
+
             return false;
         }
     }
@@ -46,6 +50,6 @@ export class TokenService {
 
     // Remove token
     removeToken(){
-        localStorage.removeItem('auth_token');
+        localStorage.removeItem('auth_token_ag_11');
     }
 }

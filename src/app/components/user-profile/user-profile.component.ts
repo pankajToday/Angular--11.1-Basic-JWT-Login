@@ -17,10 +17,14 @@ export class User {
 export class UserProfileComponent implements OnInit {
 
   constructor( public authService: AuthService ) {
-    this.authService.profileUser().subscribe((data:any) => {
-      this.UserProfile = data; })  }
+      /*this.authService.profileUser().subscribe((data:any) => {
+      this.UserProfile = data; })*/
+     }
 
-    UserProfile: User;
+
+
+
+UserProfile: User;
 
 
   ngOnInit(): void {

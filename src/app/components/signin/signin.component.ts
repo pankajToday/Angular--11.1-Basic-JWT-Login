@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/auth.service';
@@ -40,20 +41,34 @@ export class SigninComponent implements OnInit {
         this.authService.signin(this.loginForm.value).subscribe(
             result => {
                 this.responseHandler(result);
+                console.log(result)
             },
             error => {
                 this.errors = error.error;
             },() => {
                 this.authState.setAuthState(true);
                 this.loginForm.reset()
-                this.router.navigate(['profile']);
+                this.router.navigate(['user-profile']);
             }
         );
     }
 
 // Handle response
     responseHandler(data){
-        this.token.handleData(data.access_token);
+
+      if(data.token)
+      {
+          this.token.handleData(data.token);
+      }
+      else if( data.access_token )
+      {
+          this.token.handleData(data.access_token);
+      }
+      else
+      {
+          this.token.handleData('');
+      }
+
     }
 
 }

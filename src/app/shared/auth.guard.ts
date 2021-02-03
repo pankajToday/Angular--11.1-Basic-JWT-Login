@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './../shared/auth.service';
+import { TokenService } from '../shared/token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +9,18 @@ import { AuthService } from './../shared/auth.service';
 export class AuthGuard implements CanActivate {
 
   constructor(
-    public authService: AuthService,
+    public tokenService: TokenService,
     public router: Router
   ) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.authService.isLoggedIn() == true ) {
+    console.log("auth status : "+this.tokenService.isLoggedIn())
+    if (this.tokenService.isLoggedIn() == false ) {
       window.alert("Access not allowed!");
-      this.router.navigate(['log-in'])
+      this.tokenService.removeToken();
+      this.router.navigate(['sign-in'])
     }
     return true;
   }
